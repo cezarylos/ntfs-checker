@@ -3,7 +3,6 @@
 import { selectIsLoading } from '@/store/global/global.slice';
 import { useAppSelector } from '@/store/store';
 import { Stack, Typography } from '@mui/material';
-import Image from 'next/image';
 import React, { ReactElement } from 'react';
 
 export default function GlobalLoader(): ReactElement {

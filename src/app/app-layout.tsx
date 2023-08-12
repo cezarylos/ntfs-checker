@@ -9,10 +9,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SnackbarProvider } from 'notistack';
 import * as React from 'react';
-import { ReactElement, useMemo, useState } from 'react';
+import { createContext, ReactElement, useMemo, useState } from 'react';
 import { Provider } from 'react-redux';
 
-export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+export const ColorModeContext = createContext({ toggleColorMode: () => void 0 });
 
 export default function AppLayout({ children }: { children: React.ReactNode }): ReactElement {
   const [mode, setMode] = useState<'light' | 'dark'>('light');
