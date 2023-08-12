@@ -1,5 +1,3 @@
-import { SocialLinksEnum } from '@/app/typings/common.typings';
-
 export interface EventInterface {
   contractAddress: string;
   checkoutProjectId: string;
@@ -15,7 +13,7 @@ export interface EventInterface {
   collectionImage: any;
   amountOfTokensToGetReward: number;
   excludedAddressesFromRewards: string[];
-  socialLinks: Record<SocialLinksEnum, string>;
   rewardTitle: string;
   isCollab: boolean;
+  isRewardCollected: boolean;
 }

@@ -1,5 +1,5 @@
-import { EventInterface } from '@/app/typings/event.interface';
-import { StrapiResponseInterface } from '@/app/typings/strapiResponse.interface';
+import { EventInterface } from '@/typings/event.interface';
+import { StrapiResponseInterface } from '@/typings/strapiResponse.interface';
 
 export interface TicketInterface {
   holderAddress: string;
