@@ -14,17 +14,18 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/navigation';
+import { enqueueSnackbar } from 'notistack';
 import React, { ReactElement, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 enum LoginFormFields {
-  EMAIL = 'email',
+  IDENTIFIER = 'identifier',
   PASSWORD = 'password'
 }
 
 export interface LoginFormInterface {
-  [LoginFormFields.EMAIL]: string;
+  [LoginFormFields.IDENTIFIER]: string;
   [LoginFormFields.PASSWORD]: string;
 }
 
@@ -36,13 +37,13 @@ export default function SignIn(): ReactElement {
   const [showPassword, setShowPassword] = useState(false);
 
   const LoginSchema = yup.object().shape({
-    email: yup.string().required('Email address is required').email('Please enter a valid email address'),
-    password: yup.string().required('Password is required')
+    identifier: yup.string().required('Login lub email jest wymagany'),
+    password: yup.string().required('Hasło jest wymagane')
   });
 
   const methods = useForm<LoginFormInterface>({
     defaultValues: {
-      [LoginFormFields.EMAIL]: '',
+      [LoginFormFields.IDENTIFIER]: '',
       [LoginFormFields.PASSWORD]: ''
     },
     resolver: yupResolver(LoginSchema)
@@ -57,9 +58,10 @@ export default function SignIn(): ReactElement {
     try {
       await StrapiService.login(data);
       await dispatch(getMe());
+      enqueueSnackbar('Zalogowano!', { variant: 'success' });
       router.push('/events');
     } catch (e: any) {
-      console.error(e?.data?.error?.message);
+      enqueueSnackbar(e?.response?.data?.error?.message, { variant: 'error' });
     }
   };
 
@@ -80,15 +82,15 @@ export default function SignIn(): ReactElement {
             srcSet={'/logo1.gif'}
           ></Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Logowanie
           </Typography>
           <Stack sx={{ mt: 1 }} gap={2} minWidth={'100%'}>
             <RHFTextField
               id="email"
               fullWidth
-              label="Email Address"
-              name={LoginFormFields.EMAIL}
-              autoComplete="email"
+              label="Login lub email"
+              name={LoginFormFields.IDENTIFIER}
+              autoComplete="login"
               autoFocus
             />
             <RHFTextField
@@ -116,8 +118,9 @@ export default function SignIn(): ReactElement {
               variant="contained"
               disabled={!isValid}
               loading={isSubmitting}
+              sx={{ height: 56, textTransform: 'none' }}
             >
-              Sign In
+              Zaloguj się
             </LoadingButton>
           </Stack>
         </Box>

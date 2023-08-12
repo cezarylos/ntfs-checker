@@ -59,10 +59,10 @@ export class StrapiService {
     }
   }
 
-  public static async login({ email, password }: LoginFormInterface): Promise<void> {
+  public static async login({ identifier, password }: LoginFormInterface): Promise<void> {
     try {
       const response = await axios.post(`${BASE_STRAPI_URL}/api/auth/local`, {
-        identifier: email,
+        identifier,
         password
       });
       localStorage.setItem(LocalStorageItemsEnum.JWT, response.data.jwt);

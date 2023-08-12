@@ -14,7 +14,6 @@ export default function GlobalStyles() {
           margin: 0,
           padding: 0,
           width: '100%',
-          height: '100%',
           WebkitOverflowScrolling: 'touch'
         },
         body: {
@@ -39,6 +38,9 @@ export default function GlobalStyles() {
               WebkitAppearance: 'none'
             }
           }
+        },
+        a: {
+          textDecoration: 'none'
         },
         img: {
           display: 'block',
