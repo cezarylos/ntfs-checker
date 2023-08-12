@@ -76,7 +76,7 @@ export default function SignIn(): ReactElement {
         >
           <Avatar
             sx={{ m: 1, bgcolor: 'secondary.main', width: 100, height: 100 }}
-            sizes={'100vw'}
+            sizes={'10vw'}
             srcSet={'/logo1.gif'}
           ></Avatar>
           <Typography component="h1" variant="h5">
