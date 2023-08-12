@@ -18,4 +18,5 @@ export interface TicketInterface {
   title: string;
   description: string;
   tokenIds: number[];
+  isRewardCollected: boolean;
 }

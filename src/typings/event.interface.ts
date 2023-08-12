@@ -15,5 +15,4 @@ export interface EventInterface {
   excludedAddressesFromRewards: string[];
   rewardTitle: string;
   isCollab: boolean;
-  isRewardCollected: boolean;
 }
