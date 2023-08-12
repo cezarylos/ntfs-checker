@@ -1,0 +1,50 @@
+{
+  "name": "material-next-app-router-ts",
+  "version": "5.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
+  },
+  "dependencies": {
+    "@emotion/cache": "latest",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@hookform/resolvers": "^3.1.1",
+    "@mui/icons-material": "latest",
+    "@mui/lab": "^5.0.0-alpha.138",
+    "@mui/material": "latest",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@sahareth/strapi-handler": "^2.0.3",
+    "@yudiel/react-qr-scanner": "^1.1.10",
+    "axios": "^1.4.0",
+    "crypto-js": "^4.1.1",
+    "next": "13.x",
+    "notistack": "^3.0.1",
+    "react": "18.x",
+    "react-dom": "18.x",
+    "react-hook-form": "^7.45.4",
+    "react-redux": "^8.1.2",
+    "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^13.4.2",
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.0",
+    "eslint": "latest",
+    "eslint-config-next": "13.4.1",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.8.8",
+    "typescript": "latest"
+  }
+}
