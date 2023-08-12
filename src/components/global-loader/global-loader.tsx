@@ -24,16 +24,6 @@ export default function GlobalLoader(): ReactElement {
       alignItems={'center'}
       justifyContent={'center'}
     >
-      <Image
-        src={'/logo1.gif'}
-        width={0}
-        height={0}
-        alt={'Logo'}
-        fill={false}
-        priority
-        sizes={'100vw'}
-        style={{ width: 'auto', height: '7rem' }}
-      />
       <Typography color={'warning'} variant={'h2'}>
         Ładowanie...
       </Typography>

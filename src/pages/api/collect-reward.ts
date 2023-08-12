@@ -8,6 +8,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       for (let i = 0; i < ticketIds.length; i++) {
         const ticketId = ticketIds[i];
+        const {
+          data: {
+            attributes: { isRewardCollected }
+          }
+        } = await StrapiService.getTicketById(process.env.STRAPI_API_TOKEN as string, ticketId);
+
+        if (isRewardCollected) {
+          return res.status(400).json({ message: 'Nagroda już odebrana' });
+        }
+
         await StrapiService.changeIsRewardCollectedTicketStatus(process.env.STRAPI_API_TOKEN as string, ticketId, true);
       }
 

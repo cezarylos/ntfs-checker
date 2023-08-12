@@ -1,6 +1,6 @@
 'use client';
 
-import { getMe, selectMe } from '@/store/global/global.slice';
+import { getMe, selectMe, setIsLoading } from '@/store/global/global.slice';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { useRouter } from 'next/navigation';
 import { ReactElement, useEffect } from 'react';
@@ -19,10 +19,13 @@ export default function LoginGuard({ children }: { children: React.ReactNode }):
         return;
       }
       try {
+        dispatch(setIsLoading(true));
         await dispatch(getMe()).unwrap();
       } catch (e) {
         router.push('/login');
         console.error(e);
+      } finally {
+        dispatch(setIsLoading(false));
       }
     };
     initData().finally();

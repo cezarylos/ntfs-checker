@@ -59,6 +59,17 @@ export class StrapiService {
     }
   }
 
+  public static async getTicketById(jwt: string, ticketId: string): Promise<StrapiResponseInterface<TicketInterface>> {
+    try {
+      const headers = getHeaders(jwt);
+      const res = await fetch(`${BASE_STRAPI_URL}/api/tickets/${ticketId}`, { headers, cache: 'no-cache' });
+      return res.json();
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  }
+
   public static async login({ identifier, password }: LoginFormInterface): Promise<void> {
     try {
       const response = await axios.post(`${BASE_STRAPI_URL}/api/auth/local`, {

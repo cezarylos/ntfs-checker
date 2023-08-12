@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const address = bytes.toString(CryptoJS.enc.Utf8).toLowerCase();
 
       if (!address) {
-        return res.status(400).json({ message: 'Invalid QR Code' });
+        return res.status(400).json({ message: 'Błędny kod QR' });
       }
 
       const response = await StrapiService.getNotCollectedRewardTicketsByHolderAddress(
@@ -28,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const { data } = response;
 
       if (!data) {
-        return res.status(400).json({ message: 'No rewards' });
+        return res.status(400).json({ message: 'Brak nagród' });
       }
 
       const mappedTickets = data.map(ticketWrapper => {

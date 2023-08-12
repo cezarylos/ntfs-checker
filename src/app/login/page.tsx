@@ -61,7 +61,7 @@ export default function SignIn(): ReactElement {
       enqueueSnackbar('Zalogowano!', { variant: 'success' });
       router.push('/events');
     } catch (e: any) {
-      enqueueSnackbar(e?.response?.data?.error?.message, { variant: 'error' });
+      enqueueSnackbar(e?.response?.data?.error?.message ?? 'Error', { variant: 'error' });
     }
   };
 
@@ -76,11 +76,7 @@ export default function SignIn(): ReactElement {
             alignItems: 'center'
           }}
         >
-          <Avatar
-            sx={{ m: 1, bgcolor: 'secondary.main', width: 100, height: 100 }}
-            sizes={'10vw'}
-            srcSet={'/logo1.gif'}
-          ></Avatar>
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main', width: 100, height: 100 }} sizes={'10vw'}></Avatar>
           <Typography component="h1" variant="h5">
             Logowanie
           </Typography>
@@ -96,7 +92,7 @@ export default function SignIn(): ReactElement {
             <RHFTextField
               id="password"
               fullWidth
-              label="Password"
+              label="Hasło"
               name={LoginFormFields.PASSWORD}
               autoComplete="password"
               type={showPassword ? 'text' : 'password'}

@@ -49,8 +49,8 @@ export default function Scanner({ id }: Props): ReactElement {
         eventId: id
       });
       setRewards(res.data);
-    } catch (e) {
-      console.error(e);
+    } catch (e: any) {
+      enqueueSnackbar(e.response.data?.message, { variant: 'error' });
     } finally {
       dispatch(setIsLoading(false));
     }
@@ -78,12 +78,14 @@ export default function Scanner({ id }: Props): ReactElement {
       });
       router.push(`/events/${id}`);
       enqueueSnackbar('Odebrane!', { variant: 'success' });
-    } catch (e) {
-      console.error(e);
+    } catch (e: any) {
+      enqueueSnackbar(e.response.data?.message, { variant: 'error' });
+      setOpen(false);
+      await getRewards();
     } finally {
       dispatch(setIsLoading(false));
     }
-  }, [dispatch, id, isCollectAll, rewards, router]);
+  }, [dispatch, getRewards, id, isCollectAll, rewards, router]);
 
   return (
     <>
