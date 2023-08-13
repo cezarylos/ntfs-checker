@@ -9,13 +9,20 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SnackbarProvider } from 'notistack';
 import * as React from 'react';
-import { createContext, ReactElement, useMemo, useState } from 'react';
+import { createContext, ReactElement, useEffect, useMemo, useState } from 'react';
 import { Provider } from 'react-redux';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 export default function AppLayout({ children }: { children: React.ReactNode }): ReactElement {
   const [mode, setMode] = useState<'light' | 'dark'>('light');
+
+  useEffect((): void => {
+    if (!window) {
+      return;
+    }
+    setMode(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  }, []);
 
   const colorMode = useMemo(
     () => ({

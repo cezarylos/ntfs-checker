@@ -18,11 +18,10 @@ export default function ThemeSwitch(): ReactElement {
         alignItems: 'center',
         justifyContent: 'center',
         color: 'text.primary',
-        borderRadius: 1,
-        p: 3
+        borderRadius: 1
       }}
     >
-      <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+      <IconButton onClick={colorMode.toggleColorMode} color="inherit">
         {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
       </IconButton>
     </Box>
