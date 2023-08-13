@@ -89,18 +89,16 @@ export default function Scanner({ id }: Props): ReactElement {
 
   return (
     <>
-      <Stack sx={{ width: '100%', maxWidth: '500px', height: '50vh' }} gap={2} alignItems={'center'}>
-        <Link href={`/events/${id}`}>
-          <Button variant={'contained'} color={'secondary'} sx={{ width: '200px' }}>
-            <Typography variant={'h3'} textAlign={'center'} px={2}>
-              Wróć
-            </Typography>
-          </Button>
-        </Link>
+      <Stack
+        sx={{ width: '100%', maxWidth: '500px', flexGrow: 1 }}
+        gap={2}
+        alignItems={'center'}
+        justifyContent={'space-between'}
+      >
         {!encryptedAddress && <QrScanner onDecode={onDecode} onError={error => console.log(error?.message)} />}
         {!!rewards.length && (
-          <>
-            <Stack alignItems={'center'}>
+          <Stack alignItems={'center'} justifyContent={'center'}>
+            <Stack alignItems={'center'} justifyContent={'center'} mb={2}>
               <Typography variant={'body1'} fontSize={'24px'}>
                 Do odebrania:
               </Typography>
@@ -132,13 +130,20 @@ export default function Scanner({ id }: Props): ReactElement {
                 </Button>
               )}
             </Stack>
-          </>
+          </Stack>
         )}
         {!!encryptedAddress && !rewards.length && (
           <Typography variant={'h3'} textAlign={'center'} mt={2}>
             Brak nagród do odebrania
           </Typography>
         )}
+        <Link href={`/events/${id}`}>
+          <Button variant={'contained'} color={'secondary'} sx={{ width: '200px', marginBottom: '16px' }}>
+            <Typography variant={'h3'} textAlign={'center'} px={2}>
+              Wróć
+            </Typography>
+          </Button>
+        </Link>
       </Stack>
 
       <Dialog
