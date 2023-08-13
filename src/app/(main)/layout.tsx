@@ -9,9 +9,9 @@ export default function Layout({ children }: { children: React.ReactNode }): Rea
   return (
     <LoginGuard>
       <GlobalLoader />
-      <Stack sx={{ flexGrow: 1, height: '100vh' }}>
+      <Stack sx={{ flexGrow: 1, height: '100%' }}>
         <Navbar />
-        <Stack p={2} sx={{ flexGrow: 1 }}>
+        <Stack p={2} sx={{ flexGrow: 1, overflow: 'auto' }}>
           {children}
         </Stack>
       </Stack>

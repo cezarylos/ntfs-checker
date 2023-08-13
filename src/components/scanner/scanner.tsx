@@ -89,7 +89,7 @@ export default function Scanner({ id }: Props): ReactElement {
 
   return (
     <>
-      <Stack sx={{ width: '50vh', height: '50vh' }} gap={2} alignItems={'center'}>
+      <Stack sx={{ width: '100%', maxWidth: '500px', height: '50vh' }} gap={2} alignItems={'center'}>
         <Link href={`/events/${id}`}>
           <Button variant={'contained'} color={'secondary'} sx={{ width: '200px' }}>
             <Typography variant={'h3'} textAlign={'center'} px={2}>
