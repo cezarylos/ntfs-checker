@@ -8,10 +8,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       const me = await StrapiService.getMe(adminJwt as string);
 
-      if (!me) {
-        return res.status(400).json({ message: 'Unauthorized' });
-      }
-
       const { events } = me;
 
       if (!events.includes(eventId)) {
@@ -36,7 +32,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(201).json({ message: 'Success' });
     } catch (e) {
       console.error(e);
-      return res.status(500).json({ message: 'Something went wrong' });
+      return res.status(400).json({ message: 'Unauthorized' });
     }
   } else {
     res.status(405).json({ message: 'Method not allowed' });
