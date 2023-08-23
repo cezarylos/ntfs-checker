@@ -1,12 +1,13 @@
 import { StrapiService } from '@/services/strapi.service';
 import { AppState } from '@/store/store';
+import { LocalStorageItemsEnum } from '@/typings/localStorageItems.enum';
 import { MeInterface } from '@/typings/me.interface';
 import { Slices } from '@/typings/slices';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const getMe = createAsyncThunk(`${Slices.GLOBAL}/getMe`, async (): Promise<MeInterface | null> => {
   try {
-    return await StrapiService.getMe();
+    return await StrapiService.getMe(localStorage.getItem(LocalStorageItemsEnum.JWT) as string);
   } catch (e) {
     throw new Error(e as string);
   }
