@@ -9,8 +9,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const me = await StrapiService.getMe(adminJwt as string);
 
       const { events } = me;
+      const eventsIds = events.map(event => Number(event.id));
 
-      if (!events.includes(eventId)) {
+      if (!eventsIds.includes(Number(eventId))) {
         return res.status(400).json({ message: 'Unauthorized' });
       }
 

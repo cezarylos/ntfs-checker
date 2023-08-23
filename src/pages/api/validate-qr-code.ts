@@ -1,6 +1,8 @@
 import { StrapiService } from '@/services/strapi.service';
 import { NextApiRequest, NextApiResponse } from 'next';
 
+import axios from 'axios';
+
 const CryptoJS = require('crypto-js');
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -19,6 +21,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (!address) {
         return res.status(400).json({ message: 'Błędny kod QR' });
       }
+
+      await axios.post(`${process.env.CUSTOMER_API_URL}/assign-ticket-to-address`, {
+        address,
+        eventId
+      });
 
       const response = await StrapiService.getNotCollectedRewardTicketsByHolderAddress(
         process.env.STRAPI_API_TOKEN as string,
