@@ -83,9 +83,9 @@ export class StrapiService {
     }
   }
 
-  public static async getMe(): Promise<MeInterface> {
+  public static async getMe(token?: string): Promise<MeInterface> {
     try {
-      const jwt = localStorage.getItem(LocalStorageItemsEnum.JWT) as string;
+      const jwt = token || (localStorage.getItem(LocalStorageItemsEnum.JWT) as string);
       const headers = getHeaders(jwt);
       const response = await axios.get(
         `${BASE_STRAPI_URL}/api/users/me?populate[events][fields][0]=name&populate[events]&populate[events][filters][isCollab][$eq]=false`,

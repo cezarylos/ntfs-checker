@@ -3,9 +3,15 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
-    const { ticketIds } = req.body;
+    const { ticketIds, eventId, adminJwt } = req.body;
 
     try {
+      const { events } = await StrapiService.getMe(adminJwt as string);
+
+      if (!events.includes(eventId)) {
+        return res.status(400).json({ message: 'Unauthorized' });
+      }
+
       for (let i = 0; i < ticketIds.length; i++) {
         const ticketId = ticketIds[i];
         const {

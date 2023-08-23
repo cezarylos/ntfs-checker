@@ -3,6 +3,7 @@
 import { setIsLoading } from '@/store/global/global.slice';
 import { useAppDispatch } from '@/store/store';
 import { EndpointsEnum } from '@/typings/endpoints.enum';
+import { LocalStorageItemsEnum } from '@/typings/localStorageItems.enum';
 import { Button, Dialog, DialogActions, DialogTitle, Stack, Typography } from '@mui/material';
 import { QrScanner } from '@yudiel/react-qr-scanner';
 import Link from 'next/link';
@@ -74,7 +75,9 @@ export default function Scanner({ id }: Props): ReactElement {
     try {
       dispatch(setIsLoading(true));
       await axios.post('/api/' + EndpointsEnum.COLLECT_REWARD, {
-        ticketIds: isCollectAll ? rewards.map(({ id }) => id) : [rewards[0].id]
+        ticketIds: isCollectAll ? rewards.map(({ id }) => id) : [rewards[0].id],
+        eventId: id,
+        adminJwt: localStorage.getItem(LocalStorageItemsEnum.JWT) as string
       });
       router.push(`/events/${id}`);
       enqueueSnackbar('Odebrane!', { variant: 'success' });
