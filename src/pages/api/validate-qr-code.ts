@@ -52,7 +52,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(201).json(mappedTickets);
     } catch (e) {
       console.error(e);
-      return res.status(500).json({ message: 'Something went wrong' });
+      const message = e?.response?.data?.message;
+      return res.status(500).json({ message: message || 'Something went wrong' });
     }
   } else {
     res.status(405).json({ message: 'Method not allowed' });
