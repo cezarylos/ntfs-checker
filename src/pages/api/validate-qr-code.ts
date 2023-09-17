@@ -50,7 +50,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
 
       return res.status(201).json(mappedTickets);
-    } catch (e) {
+    } catch (e: any) {
       console.error(e);
       const message = e?.response?.data?.message;
       return res.status(500).json({ message: message || 'Something went wrong' });
