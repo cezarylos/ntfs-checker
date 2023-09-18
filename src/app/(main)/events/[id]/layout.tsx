@@ -1,3 +1,4 @@
+import RewardsLeft from '@/components/rewardsLeft/rewardsLeft';
 import { StrapiService } from '@/services/strapi.service';
 import { Stack, Typography } from '@mui/material';
 import * as React from 'react';
@@ -19,6 +20,7 @@ export default async function Layout({
       <Typography variant={'h3'} textAlign={'center'} mb={2}>
         {name}
       </Typography>
+      <RewardsLeft id={id} />
       <Stack sx={{ flexGrow: 1, width: '100%' }} alignItems={'center'}>
         {children}
       </Stack>

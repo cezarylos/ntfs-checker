@@ -59,6 +59,24 @@ export class StrapiService {
     }
   }
 
+  public static async getEventRewardsToCollectLeft(
+    jwt: string,
+    eventId: string
+  ): Promise<StrapiArrayResponseInterface<TicketInterface>> {
+    try {
+      const hasEventId = `&filters[event][id][$eq]=${eventId}`;
+      const headers = getHeaders(jwt);
+      const res = await fetch(
+        `${BASE_STRAPI_URL}/api/tickets?filters[isRewardCollected][$eq]=false${hasEventId}${noLimitPagination}`,
+        { headers, cache: 'no-cache' }
+      );
+      return res.json();
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  }
+
   public static async getTicketById(jwt: string, ticketId: string): Promise<StrapiResponseInterface<TicketInterface>> {
     try {
       const headers = getHeaders(jwt);
