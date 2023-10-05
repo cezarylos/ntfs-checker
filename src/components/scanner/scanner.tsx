@@ -1,6 +1,6 @@
 'use client';
 
-import { setIsLoading } from '@/store/global/global.slice';
+import { getRewardsLeft, setIsLoading } from '@/store/global/global.slice';
 import { useAppDispatch } from '@/store/store';
 import { EndpointsEnum } from '@/typings/endpoints.enum';
 import { LocalStorageItemsEnum } from '@/typings/localStorageItems.enum';
@@ -79,6 +79,7 @@ export default function Scanner({ id }: Props): ReactElement {
         eventId: id,
         adminJwt: localStorage.getItem(LocalStorageItemsEnum.JWT) as string
       });
+      await dispatch(getRewardsLeft(id));
       router.push(`/events/${id}`);
       enqueueSnackbar('Odebrane!', { variant: 'success' });
     } catch (e: any) {
