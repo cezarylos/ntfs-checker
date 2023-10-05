@@ -18,7 +18,7 @@ export const getMe = createAsyncThunk(`${Slices.GLOBAL}/getMe`, async (): Promis
 
 export const getRewardsLeft = createAsyncThunk(
   `${Slices.GLOBAL}/getRewardsLeft`,
-  async (eventId: string): Promise<number | null> => {
+  async (eventId: string): Promise<number | undefined> => {
     try {
       const {
         data: { rewardsLeft }
